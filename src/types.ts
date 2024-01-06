@@ -1,6 +1,7 @@
 export type FormField = {
   label: string;
   required : boolean;
+  model: string;
 }
 
 export type TextField = FormField & {
@@ -37,6 +38,5 @@ export type FormSchema = {
 }
 
 export type FieldProps<T extends Field> = {
-    model?: any;
     configuration: T 
 }
