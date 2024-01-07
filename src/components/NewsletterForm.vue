@@ -12,8 +12,8 @@ const formData: Ref<null | FormSchema> = ref(null)
 const { handleSubmit, resetForm, meta } = useForm();
 
 const onSubmit = handleSubmit((values) => {
+    console.log('values', values)
     if (values.value && values.value.length > 0) {
-        console.log('values', values.value)
         resetForm();
     }
 });
