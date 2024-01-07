@@ -12,9 +12,11 @@
     const { value, errorMessage } = useField(configuration.model, validator);
 </script>
 <template>
-    <label for="username" size="small"><small>{{ configuration.label }}</small></label>
-    <InputText v-model="(value as string)" :placeholder="configuration.placeholder"/>
-    {{ errorMessage }}
+     <div class="flex flex-column gap-1 mt-2">
+        <label for="username" size="small"><small>{{ configuration.label }}</small></label>
+        <InputText :class="{ 'p-invalid': errorMessage }" v-model="(value as string)" :placeholder="configuration.placeholder"/>
+        <small class="p-error">{{ errorMessage }}</small>
+    </div>
 </template>
 <style scoped>
 </style>

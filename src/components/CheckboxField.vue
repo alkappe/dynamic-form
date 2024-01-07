@@ -12,10 +12,12 @@
     const { value, errorMessage } = useField(configuration.model, validator);
 </script>
 <template>
-    <div class="flex align-items-center">
-        <Checkbox v-model="value" :binary="true"/>
-        <label class="ml-2">{{ configuration.description }}</label>
-        {{ errorMessage }}
+    <div class="flex flex-column gap-1 mt-2">
+        <div class="flex gap-1">
+            <Checkbox :class="{ 'p-invalid': errorMessage }" v-model="value" :binary="true"/>
+            <label class="ml-1">{{ configuration.description }}</label>
+        </div>
+        <small class="p-error">{{ errorMessage }}</small>
     </div>
 </template>
 <style scoped>

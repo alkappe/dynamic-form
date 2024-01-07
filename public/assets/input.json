@@ -20,7 +20,7 @@
            "label": "Subscribe to Newsletter",
            "type": "checkbox",
            "model": "subscribe",
-           "description": "Receive updates and special panins"
+           "description": "Receive updates and special burgers"
        },
        {
            "label": "Select Country",

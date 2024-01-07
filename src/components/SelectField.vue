@@ -12,8 +12,10 @@
     const { value, errorMessage } = useField(configuration.model, validator);
 </script>
 <template>
-    <Dropdown v-model="value" optionLabel="label" :placeholder="configuration.label" :options="configuration.options"/>
-    {{ errorMessage }}
+    <div class="flex flex-column gap-1 mt-3">
+        <Dropdown :class="{ 'p-invalid': errorMessage }" v-model="value" optionLabel="label" :placeholder="configuration.label" :options="configuration.options"/>
+        <small class="p-error">{{ errorMessage }}</small>
+    </div>
 </template>
 <style scoped>
 </style>

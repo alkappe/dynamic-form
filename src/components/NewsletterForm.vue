@@ -9,19 +9,16 @@ import SelectField from './SelectField.vue'
 import { useForm } from 'vee-validate';
 
 const formData: Ref<null | FormSchema> = ref(null)
-const { handleSubmit, resetForm } = useForm();
+const { handleSubmit, resetForm, meta } = useForm();
 
 const onSubmit = handleSubmit((values) => {
-    console.log(values)
     if (values.value && values.value.length > 0) {
-        console.log(values.value)
         resetForm();
     }
 });
-
 const fetchInput = async () => {
   try {
-    const response = await fetch(`./../../public/assets/input.json`)
+    const response = await fetch(`./../../assets/input.json`)
     formData.value  = await response.json()
   } catch (error) {
     console.log(error)
@@ -33,17 +30,21 @@ fetchInput()
 </script>
 
 <template>
-    <div v-if="formData">
-        <h3>Register now and receive a gift 🎁 !</h3>
-        <p>Keep in touch with our offers</p>
-        <form @submit="onSubmit" class="formWrapper">
-            <div v-for="field in formData.fields"  class="flex flex-column gap-1">
+    <div v-if="formData" class="newsletterForm">
+        <div class="my-4">
+            <h3 class="mt-2">Register now and receive a gift 🎁 !</h3>
+            <p class="mt-1">Keep in touch with our offers</p>
+        </div>
+        <form @submit="onSubmit">
+            <div v-for="field in formData.fields"  class="fieldsWrapper flex flex-column gap-1">
                 <TextField  :configuration="field" v-if="field.type === 'text'"/>
                 <EmailField :configuration="field" v-if="field.type === 'email'"/>
                 <CheckboxField :configuration="field" v-if="field.type === 'checkbox'"/>
                 <SelectField :configuration="field" v-if="field.type === 'select'"/>
             </div>
-            <Button type="submit" label="Ok, submit data!"></Button>
+            <div class="card flex justify-content-center">
+                <Button :disabled="!meta.valid" type="submit" class="mt-4" label="Ok, submit data!"></Button>
+            </div>
         </form>
     </div>
     <div v-else>
@@ -54,11 +55,18 @@ fetchInput()
 <style scoped>
 
 .newsletterForm {
-    text-align: start;
-    .formWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 320px;
+    min-height: 100vh;
+    .fieldsWrapper {
+        text-align: start;
         display: flex;
         flex-direction: column;
         gap: 1rem;
     }
+
 }
 </style>

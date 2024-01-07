@@ -22,9 +22,9 @@
 </script>
 <template>
     <div class="flex flex-column gap-1">
-        <label for="username"><small>Name</small></label>
-        <InputText v-model="(value as string)" :placeholder="configuration.placeholder"/>
-        {{ errorMessage }}
+        <label for="username"><small>{{ configuration.label }}</small></label>
+        <InputText :class="{ 'p-invalid': errorMessage }"  v-model="(value as string)" :placeholder="configuration.placeholder"/>
+        <small class="p-error">{{ errorMessage }}</small>
     </div>
 </template>
 <style scoped>
