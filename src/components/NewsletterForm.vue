@@ -13,6 +13,7 @@ const { handleSubmit, resetForm, meta } = useForm();
 
 const onSubmit = handleSubmit((values) => {
     if (values.value && values.value.length > 0) {
+        console.log('values', values.value)
         resetForm();
     }
 });
@@ -48,7 +49,7 @@ fetchInput()
         </form>
     </div>
     <div v-else>
-        Loading...
+        😴 Loading...
     </div> 
 </template>
 
