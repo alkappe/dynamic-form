@@ -13,6 +13,9 @@ A basic form generator, let's fill the inputs, Enjoy! 🍻
 
 The project took 5h to 6h
 
+## start project
+npm run dev
+
 
 
 
